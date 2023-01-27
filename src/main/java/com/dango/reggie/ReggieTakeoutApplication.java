@@ -1,4 +1,4 @@
-package com.dango;
+package com.dango.reggie;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

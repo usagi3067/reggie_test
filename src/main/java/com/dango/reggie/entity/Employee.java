@@ -1,4 +1,4 @@
-package com.dango.entity;
+package com.dango.reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
