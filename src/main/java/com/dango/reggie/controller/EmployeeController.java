@@ -1,6 +1,7 @@
 package com.dango.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dango.reggie.common.R;
 import com.dango.reggie.entity.Employee;
 import com.dango.reggie.service.EmployeeService;
@@ -98,5 +99,9 @@ public class EmployeeController {
 
         employeeService.save(employee);
         return R.success("新增员工成功");
+    }
+
+    public R<Page> page() {
+        return null;
     }
 }
