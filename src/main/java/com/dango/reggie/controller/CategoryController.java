@@ -1,5 +1,7 @@
 package com.dango.reggie.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dango.reggie.common.R;
 import com.dango.reggie.entity.Category;
 import com.dango.reggie.service.CategoryService;
@@ -24,5 +26,26 @@ public class CategoryController {
         log.info("category:{}", category);
         categoryService.save(category);
         return R.success("新增分类成功");
+    }
+
+    /**
+     * 分页查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/page")
+    public R<Page> page(int page, int pageSize) {
+        //分页构造器
+        Page<Category> pageInfo = new Page<>(page, pageSize);
+        //条件构造器
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        //添加排序条件， 根据sort进行排序
+        queryWrapper.orderByAsc(Category::getSort);
+
+        //进行分页查询
+        categoryService.page(pageInfo, queryWrapper);
+
+        return R.success(pageInfo);
     }
 }
