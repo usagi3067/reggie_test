@@ -1,4 +1,4 @@
-package com.dango.config;
+package com.dango.reggie.config;
 
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
