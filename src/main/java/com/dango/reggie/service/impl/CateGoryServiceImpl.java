@@ -2,6 +2,7 @@ package com.dango.reggie.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dango.reggie.common.CustomException;
 import com.dango.reggie.entity.Category;
 import com.dango.reggie.entity.Dish;
 import com.dango.reggie.entity.Setmeal;
@@ -33,15 +34,16 @@ public class CateGoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
         if (count1 > 0) {
             //已经关联了菜品， 抛出一个业务异常
+            throw new CustomException("当前分类下关联了菜品， 不能删除");
         }
         //查询当前分类是否关联了套餐， 如果已经关联， 抛出一个业务异常
-        //查询当前分类是否关联了菜品， 如果已经关联， 抛出一个业务异常
         LambdaQueryWrapper<Setmeal> setMealLambdaQueryWrapper = new LambdaQueryWrapper<>();
         setMealLambdaQueryWrapper.eq(Setmeal::getCategoryId, id);
         int count2 = setmealService.count(setMealLambdaQueryWrapper);
 
         if (count2 > 0) {
-            //已经关联了菜品， 抛出一个业务异常
+            //已经关联了套餐， 抛出一个业务异常
+            throw new CustomException("当前分类下关联了套餐， 不能删除");
         }
 
         //正常删除分类

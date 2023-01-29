@@ -53,7 +53,8 @@ public class CategoryController {
     public R<String> delete(Long ids) {
         log.info("删除分类， id 为 {}", ids);
 
+        categoryService.remove(ids);
 
-        return null;
+        return R.success("分类信息删除成功");
     }
 }
