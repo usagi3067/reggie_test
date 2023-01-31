@@ -116,4 +116,33 @@ public class DishController {
         dishService.updateWithFlavor(dishDto);
         return R.success("新增菜品成功");
     }
+
+    /**
+     * 停售起售菜品
+     * @param status
+     * @param ids
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    public R<String> sale(@PathVariable int status, Long[] ids) {
+        for (Long id : ids) {
+            Dish dish = dishService.getById(id);
+            dish.setStatus(status);
+            dishService.updateById(dish);
+        }
+        return R.success("修改成功");
+    }
+
+    /**
+     * 删除菜品
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public R<String> delete(Long[] ids) {
+        for (Long id : ids) {
+            dishService.removeById(id);
+        }
+        return R.success("删除成功");
+    }
 }
