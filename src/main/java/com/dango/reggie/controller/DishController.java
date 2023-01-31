@@ -140,8 +140,11 @@ public class DishController {
      */
     @DeleteMapping
     public R<String> delete(Long[] ids) {
+
+
         for (Long id : ids) {
             dishService.removeById(id);
+
         }
         return R.success("删除成功");
     }
