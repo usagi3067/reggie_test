@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dango.reggie.common.R;
 import com.dango.reggie.dto.SetmealDto;
 import com.dango.reggie.entity.Category;
+import com.dango.reggie.entity.Dish;
 import com.dango.reggie.entity.Setmeal;
 import com.dango.reggie.service.CategoryService;
 import com.dango.reggie.service.SetmealDishService;
@@ -102,5 +103,21 @@ public class SetmealController {
 
         setmealService.removeWithDish(ids);
         return R.success("套餐删除成功");
+    }
+
+    /**
+     * 停售起售菜品
+     * @param status
+     * @param ids
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    public R<String> sale(@PathVariable int status, Long[] ids) {
+        for (Long id : ids) {
+            Setmeal setmeal = setmealService.getById(id);
+            setmeal.setStatus(status);
+            setmealService.updateById(setmeal);
+        }
+        return R.success("修改成功");
     }
 }
