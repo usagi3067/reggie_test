@@ -1,10 +1,12 @@
 package com.dango.reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dango.reggie.dto.DishDto;
 import com.dango.reggie.dto.SetmealDto;
 import com.dango.reggie.entity.Setmeal;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SetmealService extends IService<Setmeal> {
     /**
@@ -17,4 +19,8 @@ public interface SetmealService extends IService<Setmeal> {
      * @param ids
      */
     void removeWithDish(List<Long> ids);
+
+    SetmealDto getByIdWithDish(Long id);
+
+    void updateWithDish(SetmealDto setmealDto);
 }
