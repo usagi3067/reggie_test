@@ -1,12 +1,13 @@
-package com.dango.reggie.uiil;
+package com.dango.reggie.utils;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.profile.DefaultProfile;
-
+import com.google.gson.Gson;
+import java.util.*;
+import com.aliyuncs.dysmsapi.model.v20170525.*;
 /**
  * 短信发送工具类
  */
@@ -18,12 +19,13 @@ public class SMSUtils {
 	 * @param templateCode 模板
 	 * @param phoneNumbers 手机号
 	 * @param param 参数
+	 *              LTAI5t8hTWaDDR2xUXmVC8dD
+	 * 1runlwgf3kyZxN7aArRIctw7nwWZve
 	 */
 	public static void sendMessage(String signName, String templateCode,String phoneNumbers,String param){
-		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5tBvVaoYCuDTRJhaJrr4", "Ltw7i0URdgGvTTxtFrQHexi93qFsIw");
+		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5t8iFZGDgDdhFbBFb8kX", "LTAI5t8iFZGDgDdhFbBFb8kX");
 		IAcsClient client = new DefaultAcsClient(profile);
 		SendSmsRequest request = new SendSmsRequest();
-		request.setSysRegionId("cn-hangzhou");
 		request.setPhoneNumbers(phoneNumbers);
 		request.setSignName(signName);
 		request.setTemplateCode(templateCode);
@@ -32,7 +34,9 @@ public class SMSUtils {
 			SendSmsResponse response = client.getAcsResponse(request);
 			System.out.println("短信发送成功");
 		}catch (ClientException e) {
-			e.printStackTrace();
+			System.out.println("ErrCode:" + e.getErrCode());
+			System.out.println("ErrMsg:" + e.getErrMsg());
+			System.out.println("RequestId:" + e.getRequestId());
 		}
 	}
 

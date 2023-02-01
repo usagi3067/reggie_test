@@ -1,4 +1,4 @@
-package com.dango.reggie.uiil;
+package com.dango.reggie.utils;
 
 import java.util.Random;
 
