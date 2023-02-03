@@ -17,9 +17,16 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+<!--		redis-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+<!--		开启缓存-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 		<!--阿里云短信服务-->
 		<dependency>
